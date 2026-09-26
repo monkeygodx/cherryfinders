@@ -3,1399 +3,294 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Cherry Finders — free apartment locating across Texas metros. Licensed agents find your next place at zero cost to you.">
-<meta name="theme-color" content="#A0243A">
-<meta property="og:title" content="Cherry Finders — Free Apartment Locating">
-<meta property="og:description" content="Tell us your budget and must-haves. We cherry-pick your next apartment for free.">
+<meta name="description" content="Cherry Finders — free apartment locating across Texas. Licensed local agents hunt off-market deals, build your shortlist, and get you a move-in bonus. Zero cost to you.">
+<meta name="theme-color" content="#09080A">
+<meta property="og:title" content="Cherry Finders — Free Apartment Locating in Texas">
+<meta property="og:description" content="Tell us your budget and must-haves. A licensed local agent cherry-picks your next apartment — for free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cherryfinders.com">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='12' cy='21' r='7' fill='%23A0243A'/%3E%3Ccircle cx='22' cy='23' r='6' fill='%23BE3050'/%3E%3Cpath d='M13 14 C16 6, 22 4, 26 5' stroke='%233A1620' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>Cherry Finders</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2309080A'/%3E%3Ccircle cx='16' cy='19' r='7' fill='%23FF2E4D'/%3E%3Cpath d='M16 12 C18 6, 23 5, 26 6' stroke='%23FF6274' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap">
-
-<style>
-  /* ── TOKENS ────────────────────────────────────────────── */
-  :root {
-    --cream:        #F8F4EF;
-    --navy:         #1A1315;
-    --cherry:       #A0243A;
-    --cherry-light: #BE3050;
-    --cherry-pale:  #F6E7EA;
-    --sand:         #F1E7E6;
-    --sand-dark:    #E7A9B2;
-    --charcoal:     #241C1D;
-    --muted:        #86797A;
-    --white:        #FFFFFF;
-    --gold:         #A0243A;
-    /* aliases for old names so downstream rules still work */
-    --teal:         var(--cherry);
-    --teal-light:   var(--cherry-light);
-    --teal-pale:    var(--cherry-pale);
-
-    --bg:         var(--cream);
-    --fg:         var(--charcoal);
-    --fg-muted:   var(--muted);
-
-    color-scheme: light;
-  }
-
-  /* Single-theme design — committed to the editorial cream/navy world */
-
-  *, *::before, *::after { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  img { max-width: 100%; display: block; }
-
-  /* ── NAV ───────────────────────────────────────────────── */
-  nav {
-    position: fixed;
-    top: env(safe-area-inset-top, 0px);
-    left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background 0.3s, padding 0.3s;
-  }
-
-  nav.scrolled {
-    background: rgba(26, 19, 21, 0.96);
-    backdrop-filter: blur(12px);
-    padding: 14px 40px;
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--white);
-    letter-spacing: 0.02em;
-    text-decoration: none;
-  }
-
-  .nav-logo em {
-    font-style: italic;
-    color: var(--sand-dark);
-  }
-
-  .nav-cta {
-    background: var(--cherry);
-    color: var(--white);
-    border: none;
-    padding: 10px 22px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-decoration: none;
-  }
-  .nav-cta:hover { background: var(--cherry-light); }
-
-  /* ── HERO ──────────────────────────────────────────────── */
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    align-items: flex-end;
-    padding-block: 0;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(26,19,21,0.15) 0%,
-        rgba(26,19,21,0.52) 60%,
-        rgba(26,19,21,0.88) 100%
-      );
-    z-index: 1;
-  }
-
-  /* Photographic apartment interior via SVG stand-in */
-  .hero-photo {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .hero-photo-inner {
-    width: 100%;
-    height: 100%;
-    background:
-      radial-gradient(ellipse at 30% 40%, #3A1620 0%, #1A1315 45%, #0C0809 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Decorative apartment line art */
-  .hero-photo-inner svg {
-    width: 100%;
-    height: 100%;
-    opacity: 0.22;
-    position: absolute;
-    inset: 0;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 60px 80px;
-    max-width: 780px;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sand-dark);
-    margin-bottom: 20px;
-  }
-
-  .hero-headline {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(3rem, 6vw, 5.2rem);
-    font-weight: 300;
-    line-height: 1.08;
-    color: var(--white);
-    margin: 0 0 24px;
-    text-wrap: balance;
-    letter-spacing: -0.01em;
-  }
-
-  .hero-headline .script {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 600;
-    font-size: 1.12em;
-    color: var(--sand-dark);
-    display: block;
-    line-height: 1.1;
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.82);
-    max-width: 480px;
-    margin: 0 0 36px;
-    line-height: 1.65;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .btn-primary {
-    background: var(--cherry);
-    color: var(--white);
-    border: none;
-    padding: 14px 32px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--cherry-light); transform: translateY(-1px); }
-
-  .btn-ghost {
-    background: transparent;
-    color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(255,255,255,0.4);
-    padding: 13px 28px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: var(--white); }
-
-  /* Handwritten accent floaters */
-  .hero-floaters {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .floater {
-    position: absolute;
-    font-family: 'Dancing Script', cursive;
-    color: rgba(255,255,255,0.55);
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-
-  .f1 { top: 22%; right: 8%; text-align: right; font-size: 1rem; }
-  .f2 { top: 45%; right: 12%; text-align: right; font-size: 0.95rem; }
-  .f3 { top: 30%; right: 6%; font-size: 0.9rem; color: rgba(231,169,178,0.75); }
-
-  /* ── SECTION BASE ──────────────────────────────────────── */
-  section {
-    padding-block: 100px;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-inline: 40px;
-  }
-
-  .eyebrow {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--cherry);
-    margin-bottom: 14px;
-  }
-
-  .section-headline {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(2.2rem, 4vw, 3.4rem);
-    font-weight: 400;
-    line-height: 1.15;
-    color: var(--navy);
-    margin: 0 0 20px;
-    text-wrap: balance;
-  }
-
-  .section-headline em {
-    font-style: italic;
-    color: var(--cherry);
-  }
-
-  .section-body {
-    font-size: 1.05rem;
-    color: var(--fg-muted);
-    line-height: 1.7;
-    max-width: 540px;
-  }
-
-  /* ── VALUE PROP ────────────────────────────────────────── */
-  .value-prop {
-    background: var(--navy);
-    padding-block: 110px;
-  }
-
-  .value-prop .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .value-prop .eyebrow { color: var(--sand-dark); }
-  .value-prop .section-headline { color: var(--white); }
-  .value-prop .section-headline em { color: var(--sand-dark); }
-  .value-prop .section-body { color: rgba(255,255,255,0.68); }
-
-  .value-features {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .value-feature {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
-
-  .vf-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(160,36,58,0.2);
-    border: 1px solid rgba(160,36,58,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .vf-icon svg { width: 20px; height: 20px; color: var(--sand-dark); fill: none; stroke: currentColor; stroke-width: 1.5; }
-
-  .vf-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--sand-dark);
-    margin-bottom: 5px;
-  }
-
-  .vf-text {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.6;
-  }
-
-  /* ── HOW IT WORKS ──────────────────────────────────────── */
-  .how-it-works {
-    background: var(--cream);
-  }
-
-  .how-it-works .container > .section-headline {
-    max-width: 520px;
-    margin-bottom: 60px;
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    position: relative;
-  }
-
-  .steps::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: calc(16.666% + 20px);
-    right: calc(16.666% + 20px);
-    height: 1px;
-    background: var(--sand);
-  }
-
-  .step {
-    padding: 0 32px 0 0;
-  }
-
-  .step:last-child { padding-right: 0; }
-
-  .step-num {
-    width: 56px;
-    height: 56px;
-    background: var(--cherry);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 28px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .step-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .step-text {
-    font-size: 0.92rem;
-    color: var(--fg-muted);
-    line-height: 1.65;
-  }
-
-  /* ── PERSONAL AGENT ────────────────────────────────────── */
-  .personal-agent {
-    background: var(--sand);
-    padding-block: 0;
-    overflow: hidden;
-  }
-
-  .personal-agent .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-    gap: 0;
-    min-height: 520px;
-  }
-
-  .agent-photo {
-    background: linear-gradient(135deg, #3A1620 0%, #1A1315 60%, #0C0809 100%);
-    position: relative;
-    overflow: hidden;
-    min-height: 420px;
-  }
-
-  .agent-photo-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .agent-photo-placeholder svg {
-    width: 160px;
-    height: 160px;
-    opacity: 0.2;
-  }
-
-  /* Decorative arc */
-  .agent-photo::after {
-    content: '';
-    position: absolute;
-    right: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: var(--sand);
-    opacity: 0.08;
-  }
-
-  .agent-content {
-    padding: 70px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .agent-content .section-headline { color: var(--navy); margin-bottom: 18px; }
-  .agent-content .section-body { margin-bottom: 32px; }
-
-  .btn-dark {
-    background: var(--navy);
-    color: var(--white);
-    border: none;
-    padding: 14px 32px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-decoration: none;
-    display: inline-block;
-    align-self: flex-start;
-  }
-  .btn-dark:hover { background: #33232A; }
-
-  /* ── STATS ─────────────────────────────────────────────── */
-  .stats-section {
-    background: var(--navy);
-    padding-block: 80px;
-  }
-
-  .stats-inner {
-    text-align: center;
-  }
-
-  .stats-bar {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 60px;
-    flex-wrap: wrap;
-  }
-
-  .stat-item {
-    padding: 0 56px;
-    border-right: 1px solid rgba(255,255,255,0.12);
-    text-align: center;
-  }
-
-  .stat-item:last-child { border-right: none; }
-
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.2rem;
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sand-dark);
-  }
-
-  .stats-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1.25;
-    max-width: 680px;
-    margin: 0 auto;
-    text-wrap: balance;
-  }
-
-  .stats-tagline em {
-    font-style: italic;
-    color: var(--sand-dark);
-  }
-
-  /* ── TESTIMONIALS ──────────────────────────────────────── */
-  .testimonials {
-    background: var(--cream);
-  }
-
-  .testimonials .section-headline {
-    max-width: 480px;
-    margin-bottom: 56px;
-  }
-
-  .testimonial-track {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-  }
-
-  .testimonial-card {
-    background: var(--white);
-    padding: 36px;
-    border-bottom: 3px solid var(--cherry);
-    position: relative;
-  }
-
-  .stars {
-    color: var(--gold);
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
-  }
-
-  .testimonial-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.12rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--navy);
-    line-height: 1.6;
-    margin-bottom: 22px;
-  }
-
-  .testimonial-author {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fg-muted);
-  }
-
-  .testimonial-city {
-    font-size: 0.72rem;
-    color: var(--cherry);
-    margin-top: 3px;
-  }
-
-  /* ── LEAD FORM ─────────────────────────────────────────── */
-  .lead-form-section {
-    background: var(--cherry);
-    padding-block: 100px;
-  }
-
-  .lead-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .lead-copy .eyebrow { color: rgba(255,255,255,0.7); }
-  .lead-copy .section-headline { color: var(--white); }
-  .lead-copy .section-headline em { color: #F0C4CE; font-style: italic; }
-  .lead-copy .section-body { color: rgba(255,255,255,0.78); margin-bottom: 28px; }
-
-  .lead-mini-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 32px;
-  }
-
-  .lead-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    color: rgba(255,255,255,0.82);
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .lead-step-num {
-    width: 24px;
-    height: 24px;
-    background: rgba(255,255,255,0.15);
-    color: var(--white);
-    font-size: 0.72rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  /* Form card */
-  .lead-form-card {
-    background: var(--white);
-    padding: 48px 40px;
-    box-shadow: 0 24px 60px rgba(26,19,21,0.20);
-  }
-
-  .form-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-
-  .form-sub {
-    font-size: 0.85rem;
-    color: var(--fg-muted);
-    margin-bottom: 28px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  label {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-  }
-
-  input, select, textarea {
-    border: 1px solid #D8D0C4;
-    padding: 12px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.92rem;
-    color: var(--charcoal);
-    background: var(--cream);
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--cherry);
-    background: var(--white);
-  }
-
-  textarea { resize: vertical; min-height: 80px; }
-
-  .form-submit {
-    width: 100%;
-    background: var(--navy);
-    color: var(--white);
-    border: none;
-    padding: 15px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 6px;
-  }
-
-  .form-submit:hover { background: var(--cherry); }
-  .form-submit:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-
-  .form-disclaimer {
-    font-size: 0.72rem;
-    color: var(--fg-muted);
-    margin-top: 12px;
-    line-height: 1.5;
-  }
-
-  /* Form success state */
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 40px 20px;
-  }
-
-  .form-success.visible { display: block; }
-  #lead-form.submitted { display: none; }
-
-  .success-icon {
-    width: 56px;
-    height: 56px;
-    background: var(--cherry);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-  }
-
-  .success-icon svg { width: 26px; height: 26px; fill: none; stroke: white; stroke-width: 2.5; }
-
-  .success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-
-  .success-sub { font-size: 0.92rem; color: var(--fg-muted); line-height: 1.6; }
-
-  /* ── FOOTER ────────────────────────────────────────────── */
-  footer {
-    background: var(--charcoal);
-    padding-block: 60px 40px;
-  }
-
-  .footer-inner {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 50px;
-  }
-
-  .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--white);
-    margin-bottom: 14px;
-  }
-
-  .footer-brand em { color: var(--sand-dark); font-style: italic; }
-
-  .footer-tagline {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.65;
-    max-width: 300px;
-  }
-
-  .footer-col-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--sand-dark);
-    margin-bottom: 18px;
-  }
-
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-links a {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--white); }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .footer-copy {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.35);
-  }
-
-  .footer-copy a { color: rgba(255,255,255,0.5); text-decoration: none; }
-
-  /* ── SCROLL ANIMATIONS ─────────────────────────────────── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    nav, .btn-primary, .btn-ghost { transition: none; }
-  }
-
-  /* ── RESPONSIVE ────────────────────────────────────────── */
-  @media (max-width: 900px) {
-    nav { padding: 18px 24px; }
-    nav.scrolled { padding: 12px 24px; }
-
-    .hero-content { padding: 0 24px 60px; }
-    .f1, .f2, .f3 { display: none; }
-
-    .container { padding-inline: 24px; }
-    section { padding-block: 70px; }
-
-    .value-prop .container { grid-template-columns: 1fr; gap: 48px; }
-    .steps { grid-template-columns: 1fr; gap: 40px; }
-    .steps::before { display: none; }
-    .step { padding: 0; }
-
-    .personal-agent .container { grid-template-columns: 1fr; }
-    .agent-photo { min-height: 280px; }
-    .agent-content { padding: 48px 24px; }
-
-    .stats-bar { gap: 20px; }
-    .stat-item { padding: 0 28px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
-    .stat-item:last-child { border-bottom: none; }
-
-    .testimonial-track { grid-template-columns: 1fr; }
-
-    .lead-inner { grid-template-columns: 1fr; gap: 48px; }
-    .lead-form-card { padding: 36px 24px; }
-
-    .footer-inner { grid-template-columns: 1fr; gap: 40px; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-
-    .form-row { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-headline { font-size: 2.4rem; }
-    .hero-actions { flex-direction: column; }
-    .btn-primary, .btn-ghost { width: 100%; text-align: center; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <!-- NAV -->
-<nav id="main-nav">
-  <a class="nav-logo" href="#hero">Cherry <em>Finders</em></a>
-  <a class="nav-cta" href="#get-started">Get Started Free</a>
+<nav class="nav">
+  <a class="brand" href="index.html"><span class="brand-dot"></span>Cherry Finders</a>
+  <ul class="nav-links">
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="btn btn-cherry" href="search.html">Start Your Search</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="how-it-works.html">How It Works</a>
+  <a href="about.html">About</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a class="btn btn-cherry" href="search.html">Start Your Search</a>
+</div>
 
 <!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-photo">
-    <div class="hero-photo-inner">
-      <!-- Decorative room illustration -->
-      <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1">
-        <!-- Floor -->
-        <line x1="0" y1="560" x2="1200" y2="560"/>
-        <!-- Wall perspective lines -->
-        <line x1="200" y1="0" x2="200" y2="560"/>
-        <line x1="1000" y1="0" x2="1000" y2="560"/>
-        <!-- Ceiling lines -->
-        <line x1="0" y1="120" x2="1200" y2="120"/>
-        <!-- Window left -->
-        <rect x="280" y="160" width="180" height="260"/>
-        <line x1="280" y1="290" x2="460" y2="290"/>
-        <line x1="370" y1="160" x2="370" y2="420"/>
-        <!-- Window right -->
-        <rect x="740" y="160" width="180" height="260"/>
-        <line x1="740" y1="290" x2="920" y2="290"/>
-        <line x1="830" y1="160" x2="830" y2="420"/>
-        <!-- Couch outline -->
-        <rect x="340" y="430" width="520" height="100"/>
-        <rect x="340" y="390" width="520" height="50"/>
-        <rect x="340" y="390" width="50" height="140"/>
-        <rect x="810" y="390" width="50" height="140"/>
-        <!-- Coffee table -->
-        <rect x="450" y="550" width="300" height="10"/>
-        <line x1="470" y1="560" x2="470" y2="580"/>
-        <line x1="730" y1="560" x2="730" y2="580"/>
-        <!-- Floor lamp -->
-        <line x1="940" y1="400" x2="940" y2="560"/>
-        <ellipse cx="940" cy="390" rx="30" ry="15"/>
-        <!-- Plant -->
-        <line x1="260" y1="460" x2="260" y2="560"/>
-        <ellipse cx="260" cy="450" rx="28" ry="35"/>
-        <line x1="250" y1="425" x2="240" y2="405"/>
-        <line x1="270" y1="420" x2="280" y2="400"/>
-        <!-- Rug -->
-        <ellipse cx="600" cy="560" rx="220" ry="30"/>
-      </svg>
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow">Free apartment locating · Texas</span>
+      <h1>Your next apartment,<br><span class="grad">cherry-picked</span> for free.</h1>
+      <p class="lead">Tell us your budget, your neighborhoods, and your dealbreakers. A licensed local agent hunts the market — including off-market deals you won't find on Zillow — and hands you a shortlist worth touring. You never pay a cent.</p>
+      <div class="hero-actions">
+        <a class="btn btn-cherry btn-lg" href="search.html">
+          Start Your Search
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="how-it-works.html">See how it works</a>
+      </div>
+      <div class="trust-row">
+        <span><span class="star">★</span> <b>4.9</b> average rating</span>
+        <span class="trust-sep"></span>
+        <span><b>500+</b> renters placed</span>
+        <span class="trust-sep"></span>
+        <span><b>$0</b> to you, ever</span>
+        <span class="trust-sep"></span>
+        <span>DFW · Houston · Austin · SA</span>
+      </div>
     </div>
   </div>
+</header>
 
-  <div class="hero-bg"></div>
+<!-- VALUE PROPS -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Cherry Finders</span>
+      <h2 class="h2">A real agent doing the work — <span class="grad">not another search box.</span></h2>
+      <p class="lead">Apartment hunting is a second job. We take it off your plate: the searching, the calling, the tour scheduling, the fine print. All of it, at no cost to you.</p>
+    </div>
 
-  <!-- Handwritten floaters -->
-  <div class="hero-floaters">
-    <div class="floater f1">hand-picked, just for you.</div>
-    <div class="floater f2">no fees. ever.</div>
-    <div class="floater f3">★ 4.9 rated</div>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">cherryfinders.com · Free Apartment Locating</div>
-    <h1 class="hero-headline">
-      We'll find your<br>
-      <span class="script">cherry-picked apartment —</span>
-      for free.
-    </h1>
-    <p class="hero-sub">Tell us your budget, neighborhood, and must-haves. We hand-pick the best listings and deliver them straight to you — at zero cost, ever.</p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#get-started">Find My Apartment</a>
-      <a class="btn-ghost" href="#how-it-works">See How It Works</a>
+    <div class="grid grid-3" style="margin-top:52px">
+      <article class="feature reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4M12 2 3 9v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <h3>$0 to you, ever</h3>
+        <p>Property managers pay our referral fee when you sign. Our search, shortlist, tours, and application help cost you exactly nothing — there's no catch and no fine print.</p>
+      </article>
+      <article class="feature reveal reveal-d1">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Off-market deals</h3>
+        <p>We track new listings daily and tap specials and off-market units that never hit the big sites — so you see options other renters simply never find.</p>
+      </article>
+      <article class="feature reveal reveal-d2">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>A licensed human</h3>
+        <p>You work with a licensed Texas agent — not an algorithm — who knows which buildings are worth your time, catches hidden fees, and advocates for you through signing.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- VALUE PROP -->
-<section class="value-prop">
-  <div class="container">
-    <div>
-      <div class="eyebrow reveal">cherryfinders.com · Free Locating Service</div>
-      <h2 class="section-headline reveal">We cherry-pick your next apartment <em>for free.</em></h2>
-      <p class="section-body reveal">No fees, no cookie-cutter lists. Tell us exactly what you want — we do the hunting, schedule the tours, and negotiate on your behalf.</p>
+<!-- HOW IT WORKS PREVIEW -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The process</span>
+      <h2 class="h2">Four steps, about sixty seconds of effort.</h2>
     </div>
 
-    <div class="value-features">
-      <div class="value-feature reveal">
-        <div class="vf-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <div>
-          <div class="vf-label">Zero Cost to You</div>
-          <div class="vf-text">Property managers pay our referral fee. You pay exactly nothing for our search, shortlist, or tour scheduling.</div>
-        </div>
-      </div>
-
-      <div class="value-feature reveal">
-        <div class="vf-icon">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <div>
-          <div class="vf-label">We Hunt the Deals</div>
-          <div class="vf-text">We monitor new listings daily across Zillow, Apartments.com, and off-market sources — so you see them before anyone else.</div>
-        </div>
-      </div>
-
-      <div class="value-feature reveal">
-        <div class="vf-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.57 0h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <div>
-          <div class="vf-label">Personal Agent on Call</div>
-          <div class="vf-text">You get a licensed agent — not an algorithm — who schedules tours, handles applications, and advocates for you at every step.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how-it-works" id="how-it-works">
-  <div class="container">
-    <div class="eyebrow reveal">The Process</div>
-    <h2 class="section-headline reveal">Working with us is <em>easy.</em></h2>
-
-    <div class="steps">
+    <div class="steps" style="margin-top:48px">
       <div class="step reveal">
-        <div class="step-num">1</div>
-        <div class="step-title">Tell Us What You Need</div>
-        <p class="step-text">Fill out our 60-second form — your city, budget, bedroom count, and any must-haves. The more specific, the better we can match.</p>
+        <div class="step-n">/ 01</div>
+        <h3>Tell us what you want</h3>
+        <p>Budget, areas, move-in date, must-haves, dealbreakers. The quick form takes about a minute.</p>
       </div>
-
-      <div class="step reveal">
-        <div class="step-num">2</div>
-        <div class="step-title">We Build Your Shortlist</div>
-        <p class="step-text">Your personal agent hunts through current listings, contacts properties on your behalf, and sends you a curated shortlist within 24–48 hours.</p>
+      <div class="step reveal reveal-d1">
+        <div class="step-n">/ 02</div>
+        <h3>We build your shortlist</h3>
+        <p>Your agent searches live and off-market listings, then emails a curated list with honest notes — usually within 24–48 hours.</p>
       </div>
-
-      <div class="step reveal">
-        <div class="step-num">3</div>
-        <div class="step-title">Tour &amp; Sign</div>
-        <p class="step-text">We schedule tours at times that work for you. When you find the one, we help with the application. You get a bonus for signing through us.</p>
+      <div class="step reveal reveal-d2">
+        <div class="step-n">/ 03</div>
+        <h3>Tour &amp; apply</h3>
+        <p>We schedule showings around your calendar and walk you through the application and paperwork.</p>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-n">/ 04</div>
+        <h3>Get your bonus</h3>
+        <p>Sign through us and collect a move-in bonus — up to <b>$200 cash back</b> or a moving credit.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- PERSONAL AGENT -->
-<section class="personal-agent">
-  <div class="container">
-    <div class="agent-photo">
-      <div class="agent-photo-placeholder">
-        <svg viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1">
-          <circle cx="50" cy="35" r="20"/>
-          <path d="M15 90 Q15 65 50 65 Q85 65 85 90"/>
-        </svg>
-      </div>
-      <!-- Replace with real team photo -->
-    </div>
-
-    <div class="agent-content">
-      <div class="eyebrow reveal">Who You're Working With</div>
-      <h2 class="section-headline reveal">Your own <em>personal agent.</em></h2>
-      <p class="section-body reveal">You're not filling out a form that disappears into a database. You're getting a licensed real estate agent who's done this for hundreds of renters — someone who knows which properties are actually worth touring and which ones have hidden fees.</p>
-      <a class="btn-dark reveal" href="#get-started">Work With Our Team</a>
+    <div style="margin-top:40px" class="reveal">
+      <a class="btn btn-ghost" href="how-it-works.html">Read the full breakdown
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- STATS -->
-<section class="stats-section">
-  <div class="container">
-    <div class="stats-inner">
-      <div class="stats-bar reveal">
-        <div class="stat-item">
-          <div class="stat-num">500+</div>
-          <div class="stat-label">Renters Helped</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">#1</div>
-          <div class="stat-label">Rated Locally</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">4.9</div>
-          <div class="stat-label">Google Rating</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">$0</div>
-          <div class="stat-label">Cost to You</div>
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat-num"><span class="grad">500+</span></div>
+        <div class="stat-label">Renters placed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24–48<span style="font-size:0.5em"> hr</span></div>
+        <div class="stat-label">To your shortlist</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9<span style="font-size:0.5em"> ★</span></div>
+        <div class="stat-label">Average rating</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="grad">$0</span></div>
+        <div class="stat-label">Cost to you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHT -->
+<section class="section">
+  <div class="wrap">
+    <div class="panel split reveal" style="padding:clamp(36px,5vw,64px)">
+      <div>
+        <span class="eyebrow">The unfair advantage</span>
+        <h2 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Deals that never reach the search sites.</h2>
+        <p class="lead" style="margin-top:16px">By the time a great unit shows up on Zillow, it's already got a line. We work directly with property managers, so we hear about pricing specials, waived fees, and fresh availability first — and we point them straight at you.</p>
+        <div style="margin-top:28px">
+          <a class="btn btn-cherry" href="search.html">Start Your Search</a>
         </div>
       </div>
-
-      <p class="stats-tagline reveal">Redefining apartment locating in a way that is <em>far from transactional.</em></p>
+      <ul class="form-checklist" style="margin:0">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Same-day alerts on price drops and specials</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Honest notes on the catch behind "too good" rents</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Fees flagged <em>before</em> you sign, not after</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tours booked around your schedule</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="container">
-    <div class="eyebrow reveal">What Clients Say</div>
-    <h2 class="section-headline reveal">They said it better <em>than we could.</em></h2>
-
-    <div class="testimonial-track">
-      <div class="testimonial-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"I sent in my budget and neighborhood and within two days I had a shortlist of five places I actually loved. Signed my lease in a week. This service is unreal."</p>
-        <div class="testimonial-author">— Marcus T.</div>
-        <div class="testimonial-city">Cherry Finders Client</div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Moved here from out of state and had no idea where to start. Cherry Finders narrowed it down to exactly what I was looking for. Got $150 cash back at move-in too."</p>
-        <div class="testimonial-author">— Aaliyah R.</div>
-        <div class="testimonial-city">Cherry Finders Client</div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"I was skeptical that this was actually free. It is. My agent caught a $200 undisclosed parking fee before I signed — saved me $2,400 a year on day one."</p>
-        <div class="testimonial-author">— Jordan K.</div>
-        <div class="testimonial-city">Cherry Finders Client</div>
-      </div>
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What renters say</span>
+      <h2 class="h2">They said it better than we could.</h2>
+    </div>
+    <div class="quotes" style="margin-top:48px">
+      <figure class="quote reveal">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote><p>I sent my budget and neighborhoods and had five places I actually loved within two days. Signed my lease in a week.</p></blockquote>
+        <figcaption><div class="who">Marcus T.</div><div class="where">Dallas, TX</div></figcaption>
+      </figure>
+      <figure class="quote reveal reveal-d1">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote><p>Moved from out of state with no idea where to start. They narrowed it to exactly what I wanted — and I got $150 back at move-in.</p></blockquote>
+        <figcaption><div class="who">Aaliyah R.</div><div class="where">Austin, TX</div></figcaption>
+      </figure>
+      <figure class="quote reveal reveal-d2">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote><p>I was skeptical it was really free. It is. My agent caught a $200 hidden parking fee before I signed — saved me $2,400 a year.</p></blockquote>
+        <figcaption><div class="who">Jordan K.</div><div class="where">Houston, TX</div></figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- LEAD FORM / CTA -->
-<section class="lead-form-section" id="get-started">
-  <div class="container">
-    <div class="lead-inner">
-      <div class="lead-copy">
-        <div class="eyebrow reveal">Get Your Shortlist</div>
-        <h2 class="section-headline reveal">Ready when <em>you are.</em></h2>
-        <p class="section-body reveal">Takes about 60 seconds. Your personal agent will reach out within one business day with apartments matched to your exact criteria.</p>
+<!-- SERVICE AREAS -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Where we search</span>
+      <h2 class="h2" style="font-size:clamp(1.7rem,3.2vw,2.4rem)">Across the major Texas metros.</h2>
+    </div>
+    <div class="pills reveal" style="margin-top:28px">
+      <span class="pill">Dallas</span>
+      <span class="pill">Fort Worth</span>
+      <span class="pill">Plano</span>
+      <span class="pill">Arlington</span>
+      <span class="pill">Houston</span>
+      <span class="pill">Austin</span>
+      <span class="pill">San Antonio</span>
+      <span class="pill">+ more across TX</span>
+    </div>
+  </div>
+</section>
 
-        <div class="lead-mini-steps reveal">
-          <div class="lead-step">
-            <div class="lead-step-num">1</div>
-            Fill out the quick form
-          </div>
-          <div class="lead-step">
-            <div class="lead-step-num">2</div>
-            Agent reaches out within 24 hours
-          </div>
-          <div class="lead-step">
-            <div class="lead-step-num">3</div>
-            Receive your curated shortlist
-          </div>
-          <div class="lead-step">
-            <div class="lead-step-num">4</div>
-            Tour, sign, and collect your move-in bonus
-          </div>
-        </div>
-      </div>
-
-      <div class="lead-form-card">
-        <div class="form-title">Find My Apartment</div>
-        <div class="form-sub">Free · No obligation · Takes 60 seconds</div>
-
-        <form id="lead-form" novalidate>
-          <div class="form-group">
-            <div class="form-row">
-              <label for="fname">First Name
-                <input type="text" id="fname" name="fname" placeholder="Jane" autocomplete="given-name" required>
-              </label>
-              <label for="lname">Last Name
-                <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name" required>
-              </label>
-            </div>
-
-            <label for="email">Email
-              <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email" required>
-            </label>
-
-            <label for="phone">Phone Number
-              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
-            </label>
-
-            <label for="city">Which City Are You Looking In?
-              <select id="city" name="city" required>
-                <option value="">Select a city…</option>
-                <option>Dallas, TX</option>
-                <option>Fort Worth, TX</option>
-                <option>Houston, TX</option>
-                <option>Austin, TX</option>
-                <option>San Antonio, TX</option>
-                <option>Other</option>
-              </select>
-            </label>
-
-            <div class="form-row">
-              <label for="budget">Monthly Budget
-                <select id="budget" name="budget" required>
-                  <option value="">Select…</option>
-                  <option>Under $1,000</option>
-                  <option>$1,000 – $1,500</option>
-                  <option>$1,500 – $2,000</option>
-                  <option>$2,000 – $2,500</option>
-                  <option>$2,500 – $3,000</option>
-                  <option>$3,000+</option>
-                </select>
-              </label>
-              <label for="beds">Bedrooms
-                <select id="beds" name="beds">
-                  <option value="">Any</option>
-                  <option>Studio</option>
-                  <option>1 Bedroom</option>
-                  <option>2 Bedrooms</option>
-                  <option>3 Bedrooms</option>
-                  <option>4+ Bedrooms</option>
-                </select>
-              </label>
-            </div>
-
-            <label for="movein">Move-In Date
-              <input type="text" id="movein" name="movein" placeholder="e.g. November 2026">
-            </label>
-
-            <label for="notes">Anything Else? (pet, must-haves, neighborhood)
-              <textarea id="notes" name="notes" placeholder="e.g. dog-friendly, in-unit washer, near downtown…"></textarea>
-            </label>
-          </div>
-
-          <!-- Spam honeypot: hidden from humans, bots fill it, server drops it -->
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
-          <input type="hidden" name="_subject" value="New Cherry Finders lead">
-
-          <button type="submit" class="form-submit">Send My Request →</button>
-          <p class="form-disclaimer">By submitting, you agree to be contacted by our team. We never sell your information. This is a free service — property managers pay our fee, not you.</p>
-        </form>
-
-        <div class="form-success" id="form-success">
-          <div class="success-icon">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="success-title">You're on the list!</div>
-          <p class="success-sub">Your agent will reach out within one business day. Check your email — your shortlist is coming soon.</p>
-        </div>
-      </div>
+<!-- CTA BAND -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Ready when you are.</h2>
+      <p>Takes about a minute. Your agent reaches out within one business day with apartments matched to exactly what you asked for.</p>
+      <a class="btn btn-cherry btn-lg" href="search.html">
+        Start Your Search
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
       <div>
-        <div class="footer-brand">Cherry <em>Finders</em></div>
-        <p class="footer-tagline">Free apartment locating across Texas metros. Licensed agents. Zero cost to renters.</p>
+        <a class="footer-brand" href="index.html"><span class="brand-dot"></span>Cherry Finders</a>
+        <p class="footer-tag">Free apartment locating across Texas. Licensed local agents, off-market deals, zero cost to renters.</p>
       </div>
-
       <div>
-        <div class="footer-col-label">Navigation</div>
-        <ul class="footer-links">
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#get-started">Get Started</a></li>
-          <li><a href="#get-started">Our Team</a></li>
+        <div class="foot-label">Explore</div>
+        <ul class="foot-links">
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="search.html">Start Your Search</a></li>
         </ul>
       </div>
-
       <div>
-        <div class="footer-col-label">Contact</div>
-        <ul class="footer-links">
+        <div class="foot-label">Service Areas</div>
+        <ul class="foot-links">
+          <li><a href="search.html">Dallas–Fort Worth</a></li>
+          <li><a href="search.html">Houston</a></li>
+          <li><a href="search.html">Austin</a></li>
+          <li><a href="search.html">San Antonio</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-label">Contact</div>
+        <ul class="foot-links">
           <li><a href="mailto:hello@cherryfinders.com">hello@cherryfinders.com</a></li>
-          <li><a href="https://instagram.com/cherryfinders" target="_blank">@cherryfinders on IG</a></li>
+          <li><a href="https://instagram.com/cherryfinders" target="_blank" rel="noopener">@cherryfinders</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Cherry Finders · <a href="#">Privacy Policy</a> · <a href="#">Terms</a></p>
-      <p class="footer-copy">Licensed real estate service. Referral fees paid by property managers.</p>
+      <p>© <span data-year>2026</span> Cherry Finders · <a href="contact.html">Privacy</a> · <a href="contact.html">Terms</a></p>
+      <p>Licensed real estate service · Referral fees paid by property managers</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // ── Nav scroll effect ──────────────────────────────────
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  // ── Reveal on scroll ───────────────────────────────────
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  // ── Form submit ────────────────────────────────────────
-  // WHERE LEADS GO: paste your Formspree form endpoint below.
-  // Get it free at formspree.io → New Form → copy the URL (looks like
-  // https://formspree.io/f/abcdwxyz). Every submission emails you the lead.
-  // No lead data is stored on your server.
-  const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
-  const form = document.getElementById('lead-form');
-  const successEl = document.getElementById('form-success');
-  const submitBtn = form.querySelector('.form-submit');
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    // Validate required fields
-    const required = form.querySelectorAll('[required]');
-    let valid = true;
-    let firstEmpty = null;
-    required.forEach(el => {
-      el.style.borderColor = '';
-      if (!el.value.trim()) {
-        el.style.borderColor = '#A0243A';
-        if (!firstEmpty) firstEmpty = el;
-        valid = false;
-      }
-    });
-    if (!valid) {
-      firstEmpty?.focus();
-      return;
-    }
-
-    // Clear any prior error
-    const priorErr = form.querySelector('.form-error');
-    if (priorErr) priorErr.remove();
-
-    // Submitting state
-    const originalLabel = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      });
-
-      if (res.ok) {
-        form.classList.add('submitted');
-        successEl.classList.add('visible');
-        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalLabel;
-      const errEl = document.createElement('p');
-      errEl.className = 'form-error';
-      errEl.style.cssText = 'color:#A0243A;font-size:0.82rem;margin-top:12px;font-weight:600;';
-      errEl.textContent = 'Something went wrong — please try again, or email hello@cherryfinders.com directly.';
-      submitBtn.insertAdjacentElement('afterend', errEl);
-    }
-  });
-
-  // ── Smooth scroll for anchor links ────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>
