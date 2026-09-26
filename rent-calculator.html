@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Net effective rent calculator — see what an apartment really costs per month once free-month concessions and move-in fees are factored in. Free from Cherry Finders.">
+<meta name="theme-color" content="#FBF8F4">
+<title>Rent Calculator</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2309080A'/%3E%3Ccircle cx='16' cy='19' r='7' fill='%23FF2E4D'/%3E%3Cpath d='M16 12 C18 6, 23 5, 26 6' stroke='%23FF6274' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="index.html"><span class="brand-dot"></span>Cherry Finders</a>
+  <ul class="nav-links">
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="rent-calculator.html" aria-current="page">Calculator</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="btn btn-cherry" href="search.html">Start Your Search</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="how-it-works.html">How It Works</a>
+  <a href="about.html">About</a>
+  <a href="rent-calculator.html">Calculator</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a class="btn btn-cherry" href="search.html">Start Your Search</a>
+</div>
+
+<header class="page-head">
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">Rent tools</span>
+    <h1>What does it <span class="grad">really</span> cost?</h1>
+    <p class="lead">"One month free" sounds great — but the net effective rent is the number that matters. Plug in the numbers and see the true monthly cost once concessions and move-in fees are spread across your lease.</p>
+  </div>
+</header>
+
+<section class="section" style="padding-top:clamp(24px,4vw,48px)">
+  <div class="wrap">
+    <div class="form-layout" style="grid-template-columns:0.9fr 1.1fr">
+
+      <!-- Inputs -->
+      <div class="panel form-card">
+        <h2>Net effective rent</h2>
+        <div class="form-note">ADJUST ANY FIELD — RESULTS UPDATE LIVE</div>
+
+        <div class="field">
+          <label for="gross">Advertised monthly rent ($)</label>
+          <input id="gross" type="number" inputmode="decimal" min="0" step="25" value="1800">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="term">Lease term (months)</label>
+            <input id="term" type="number" inputmode="numeric" min="1" step="1" value="12">
+          </div>
+          <div class="field">
+            <label for="free">Free months (concession)</label>
+            <input id="freeMonths" type="number" inputmode="decimal" min="0" step="0.5" value="1">
+          </div>
+        </div>
+        <div class="field">
+          <label for="fees">One-time move-in fees ($) <span style="text-transform:none;letter-spacing:0;color:var(--text-3)">— admin, app, deposit you won't get back</span></label>
+          <input id="fees" type="number" inputmode="decimal" min="0" step="25" value="0">
+        </div>
+
+        <p class="form-fine">Estimates only — always confirm concession terms and fee refundability with the property. Some "free" months are prorated as a monthly discount instead; the net effective figure comes out the same either way.</p>
+      </div>
+
+      <!-- Results -->
+      <div style="display:flex; flex-direction:column; gap:18px">
+        <div class="cta-band" style="text-align:left; padding:clamp(30px,4vw,44px)">
+          <div class="eyebrow" style="color:#fff">Net effective rent</div>
+          <div id="netMonthly" style="font-family:'Fraunces',Georgia,serif; font-weight:500; font-size:clamp(2.6rem,6vw,4rem); letter-spacing:-0.03em; line-height:1; margin-top:10px">$1,650<span style="font-size:0.34em; color:rgba(255,255,255,0.7)"> / mo</span></div>
+          <p style="margin-top:12px; color:rgba(255,255,255,0.8)" id="netSub">The real monthly cost across a 12-month lease.</p>
+        </div>
+
+        <div class="grid grid-2" style="gap:14px">
+          <div class="feature" style="padding:24px">
+            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Total lease cost</div>
+            <div id="totalCost" style="font-family:'Fraunces',Georgia,serif;font-size:1.7rem;font-weight:500;letter-spacing:-0.02em">$19,800</div>
+            <p style="margin-top:6px;font-size:0.85rem">Everything you'll actually pay.</p>
+          </div>
+          <div class="feature" style="padding:24px">
+            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">You save</div>
+            <div id="savings" style="font-family:'Fraunces',Georgia,serif;font-size:1.7rem;font-weight:500;letter-spacing:-0.02em;color:var(--cherry-2)">$1,800</div>
+            <p style="margin-top:6px;font-size:0.85rem">Vs. paying full rent every month.</p>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:24px 26px; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap">
+          <p style="margin:0; color:var(--text-2); font-size:0.94rem; max-width:36ch">Want us to hunt down places running concessions like this? That's exactly what we do.</p>
+          <a class="btn btn-cherry" href="search.html">Start Your Search</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="footer-brand" href="index.html"><span class="brand-dot"></span>Cherry Finders</a>
+        <p class="footer-tag">Free apartment locating across Texas. Licensed local agents, off-market deals, zero cost to renters.</p>
+      </div>
+      <div>
+        <div class="foot-label">Explore</div>
+        <ul class="foot-links">
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="rent-calculator.html">Rent Calculator</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="search.html">Start Your Search</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-label">Service Areas</div>
+        <ul class="foot-links">
+          <li><a href="search.html">Dallas–Fort Worth</a></li>
+          <li><a href="search.html">Houston</a></li>
+          <li><a href="search.html">Austin</a></li>
+          <li><a href="search.html">San Antonio</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-label">Contact</div>
+        <ul class="foot-links">
+          <li><a href="mailto:hello@cherryfinders.com">hello@cherryfinders.com</a></li>
+          <li><a href="https://instagram.com/cherryfinders" target="_blank" rel="noopener">@cherryfinders</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> Cherry Finders · <a href="contact.html">Privacy</a> · <a href="contact.html">Terms</a></p>
+      <p>Licensed real estate service · Referral fees paid by property managers</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  (function () {
+    var f = function (id) { return document.getElementById(id); };
+    var gross = f('gross'), term = f('term'), free = f('freeMonths'), fees = f('fees');
+    var usd = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+
+    function calc() {
+      var g = Math.max(0, parseFloat(gross.value) || 0);
+      var t = Math.max(1, parseInt(term.value) || 1);
+      var fm = Math.min(t, Math.max(0, parseFloat(free.value) || 0));
+      var fee = Math.max(0, parseFloat(fees.value) || 0);
+
+      var rentPaid = g * (t - fm);          // rent actually owed after free months
+      var totalCost = rentPaid + fee;        // plus non-refundable move-in fees
+      var netMonthly = totalCost / t;        // spread across the whole lease
+      var grossTotal = g * t;                // if you paid full rent every month
+      var savings = grossTotal - rentPaid;   // value of the concession
+
+      f('netMonthly').innerHTML = usd(netMonthly) + '<span style="font-size:0.34em; color:rgba(255,255,255,0.7)"> / mo</span>';
+      f('netSub').textContent = 'The real monthly cost across a ' + t + '-month lease' + (fee > 0 ? ', fees included.' : '.');
+      f('totalCost').textContent = usd(totalCost);
+      f('savings').textContent = usd(savings);
+    }
+
+    [gross, term, free, fees].forEach(function (el) {
+      el.addEventListener('input', calc);
+    });
+    calc();
+  })();
+</script>
+</body>
+</html>
