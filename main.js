@@ -130,7 +130,7 @@
         }
       }).catch(function () {
         showError(form, submitBtn, label,
-          'Something went wrong — please try again, or email hello@cherryfinders.com directly.');
+          'Something went wrong — please try again, or email cherryfinders@gmail.com directly.');
       });
     });
   });
