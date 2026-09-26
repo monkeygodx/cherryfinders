@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Contact Cherry Finders — email, Instagram, or send a message. Ready to move? Start your free search and a licensed Texas agent will reach out.">
-<meta name="theme-color" content="#09080A">
+<meta name="theme-color" content="#FFFFFF">
 <title>Contact</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2309080A'/%3E%3Ccircle cx='16' cy='19' r='7' fill='%23FF2E4D'/%3E%3Cpath d='M16 12 C18 6, 23 5, 26 6' stroke='%23FF6274' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,7 +19,9 @@
   <ul class="nav-links">
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="rent-calculator.html">Calculator</a></li>
+    <li><a href="rent-calculator.html">Calculator</a>
+  <a href="faq.html">FAQ</a></li>
     <li><a href="contact.html" aria-current="page">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -76,13 +78,15 @@
         <div class="form-note">WE REPLY WITHIN ONE BUSINESS DAY</div>
 
         <!--
-          ▸ CONNECT: paste your Formspree endpoint into data-endpoint
-            (https://formspree.io/f/abcdwxyz). Messages are emailed to you.
+          ▸ MESSAGES EMAIL TO: cherryfinders@gmail.com (via FormSubmit.co — no account needed).
+            First submission triggers a one-time "Activate" email to that inbox; click it once.
         -->
-        <form id="contactForm" data-endpoint="https://formspree.io/f/YOUR_FORM_ID" novalidate>
+        <form id="contactForm" data-endpoint="https://formsubmit.co/ajax/cherryfinders@gmail.com" novalidate>
           <input type="hidden" name="_subject" value="New Cherry Finders contact message">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
           <div class="hp" aria-hidden="true">
-            <label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+            <label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
           </div>
 
           <div class="field">
@@ -134,6 +138,7 @@
         <ul class="foot-links">
           <li><a href="how-it-works.html">How It Works</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="rent-calculator.html">Rent Calculator</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="search.html">Start Your Search</a></li>
         </ul>
